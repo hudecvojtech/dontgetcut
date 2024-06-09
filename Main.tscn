@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene load_steps=5 format=3 uid="uid://bmwqfxnvk1dmc"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_3ughf"]
@@ -6,11 +7,18 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qhj8l"]
 shader = ExtResource("2_oht8v")
+=======
+[gd_scene load_steps=3 format=3 uid="uid://bmwqfxnvk1dmc"]
+
+[ext_resource type="Script" path="res://Main.cs" id="1_3ughf"]
+[ext_resource type="PackedScene" uid="uid://bac8kgqwraf4p" path="res://Player.tscn" id="2_82x0q"]
+>>>>>>> 0b46aa7 (Add player)
 
 [node name="Main" type="Node2D"]
 texture_repeat = 2
 script = ExtResource("1_3ughf")
 
+<<<<<<< HEAD
 [node name="TextureRect" type="Sprite2D" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_qhj8l")
@@ -18,3 +26,6 @@ position = Vector2(322, 482)
 texture = ExtResource("2_2ul6f")
 region_enabled = true
 region_rect = Rect2(0, 0, 640, 960)
+=======
+[node name="Player" parent="." instance=ExtResource("2_82x0q")]
+>>>>>>> 0b46aa7 (Add player)

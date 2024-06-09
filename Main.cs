@@ -9,6 +9,7 @@ public partial class Main : Node2D
 	
 	private PackedScene wallScene;
 	private PackedScene brickScene;
+	private Player player;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -16,6 +17,9 @@ public partial class Main : Node2D
 		wallScene = GD.Load<PackedScene>("res://Wall.tscn");
 		brickScene = GD.Load<PackedScene>("res://Brick.tscn");
 		CreateWalls();
+		
+		player = GetNode<Player>("Player");
+		player.Position = new Vector2(CellSize, (CellsVertical * CellSize) / 2);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,7 +44,7 @@ public partial class Main : Node2D
 		{
 			for (int j = startY; j < startY + height; j++)
 			{
-				Area2D wall = (Area2D)wallScene.Instantiate();
+				StaticBody2D wall = (StaticBody2D)wallScene.Instantiate();
 				wall.Position = new Vector2(i * CellSize, j * CellSize);
 				AddChild(wall);
 			}
@@ -51,7 +55,7 @@ public partial class Main : Node2D
 	{
 		for (int i = startX; i < startX + width; i++)
 		{
-			Area2D brick = (Area2D)brickScene.Instantiate();
+			StaticBody2D brick = (StaticBody2D)brickScene.Instantiate();
 			brick.Position = new Vector2(i * CellSize, startY * CellSize);
 			AddChild(brick);
 		}

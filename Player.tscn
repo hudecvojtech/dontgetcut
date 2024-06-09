@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bac8kgqwraf4p"]
+[gd_scene load_steps=10 format=3 uid="uid://dspc3kgvnwom7"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_u4ju3"]
 [ext_resource type="Texture2D" uid="uid://xk6c51o4voqq" path="res://sprite/Wall Jump (32x32).png" id="3_l3tfa"]

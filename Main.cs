@@ -9,13 +9,18 @@ public partial class Main : Node2D
 	
 	private PackedScene wallScene;
 	private PackedScene brickScene;
+	private PackedScene sawScene;
 	private Player player;
+	
+	private Random random = new Random();
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		wallScene = GD.Load<PackedScene>("res://Wall.tscn");
 		brickScene = GD.Load<PackedScene>("res://Brick.tscn");
+		sawScene = GD.Load<PackedScene>("res://Saw.tscn");
+		CreateTrap();
 		CreateWalls();
 		
 		player = GetNode<Player>("Player");
@@ -59,5 +64,15 @@ public partial class Main : Node2D
 			brick.Position = new Vector2(i * CellSize, startY * CellSize);
 			AddChild(brick);
 		}
+	}
+	
+	private void CreateTrap() {
+		int sawYCellPosition = random.Next(1, CellsVertical - 1);
+		Area2D saw = (Area2D)sawScene.Instantiate();
+		saw.Position = new Vector2((CellsHorizontal - 1) * CellSize, sawYCellPosition * CellSize);
+		AddChild(saw);
+		
+		AnimatedSprite2D sawSprite = saw.GetNode<AnimatedSprite2D>("Saw");
+		sawSprite.Play();
 	}
 }

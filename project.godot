@@ -11,9 +11,19 @@ config_version=5
 [application]
 
 config/name="DontGetCut"
-config/features=PackedStringArray("4.2", "Forward Plus")
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=960
 
 [dotnet]
 
 project/assembly_name="DontGetCut"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 1)

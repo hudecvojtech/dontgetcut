@@ -1,0 +1,145 @@
+[gd_scene load_steps=22 format=3 uid="uid://cd4xi7gsj24ox"]
+
+[ext_resource type="Texture2D" uid="uid://bf7bw6vttt080" path="res://sprite/Cherries.png" id="1_lcd6x"]
+[ext_resource type="Script" path="res://Cherry.cs" id="1_wb7ko"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4juq"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnj25"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a3my"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0aa8"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j55wt"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tp2u"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0ug5"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l7qs"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vjur"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxq6c"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unbcf"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vntw"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4a0r3"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvg6q"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xhx0"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw2qy"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87tjb"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhfv7"]
+atlas = ExtResource("1_lcd6x")
+region = Rect2(512, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gsu08"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnj25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a3my")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0aa8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j55wt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tp2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0ug5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l7qs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vjur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxq6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unbcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vntw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a0r3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvg6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xhx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw2qy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87tjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhfv7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Cherry" type="Area2D"]
+script = ExtResource("1_wb7ko")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m4juq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gsu08")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

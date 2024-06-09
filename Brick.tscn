@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dottlkoxlucwc"]
+[gd_scene load_steps=4 format=3 uid="uid://dottlkoxlucwc"]
 
 [ext_resource type="Texture2D" uid="uid://dqjfxu7bkbab3" path="res://sprite/Terrain (16x16).png" id="1_0tg4q"]
+[ext_resource type="Script" path="res://Brick.cs" id="1_av6u2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utidg"]
 size = Vector2(32, 32)
 
-[node name="Brick" type="StaticBody2D"]
+[node name="Brick" type="Area2D"]
 collision_layer = 2
+script = ExtResource("1_av6u2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(16, 16)
@@ -17,3 +19,5 @@ region_rect = Rect2(208, 144, 32, 32)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_utidg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

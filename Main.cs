@@ -55,7 +55,7 @@ public partial class Main : Node2D
 	{
 		for (int i = startX; i < startX + width; i++)
 		{
-			StaticBody2D brick = (StaticBody2D)brickScene.Instantiate();
+			Area2D brick = (Area2D)brickScene.Instantiate();
 			brick.Position = new Vector2(i * CellSize, startY * CellSize);
 			AddChild(brick);
 		}

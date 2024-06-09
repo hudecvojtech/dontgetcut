@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://beclrrmn420jt"]
+[gd_scene load_steps=7 format=3 uid="uid://beclrrmn420jt"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_3ughf"]
 [ext_resource type="Texture2D" uid="uid://00g2tgafae58" path="res://sprite/Brown.png" id="2_2ul6f"]
 [ext_resource type="Shader" path="res://Scroll.gdshader" id="2_oht8v"]
 [ext_resource type="PackedScene" uid="uid://bac8kgqwraf4p" path="res://Player.tscn" id="4_2a2s6"]
+[ext_resource type="PackedScene" uid="uid://cd4xi7gsj24ox" path="res://Cherry.tscn" id="5_qcesj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qhj8l"]
 shader = ExtResource("2_oht8v")
@@ -21,3 +22,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 640, 960)
 
 [node name="Player" parent="." instance=ExtResource("4_2a2s6")]
+position = Vector2(100, 100)
+
+[node name="Cherry" parent="." instance=ExtResource("5_qcesj")]
+scale = Vector2(2, 2)

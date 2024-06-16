@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://coxaxk5b7i7i2"]
+[gd_scene load_steps=13 format=3 uid="uid://coxaxk5b7i7i2"]
 
-[ext_resource type="Texture2D" uid="uid://cwgut547aome5" path="res://sprite/On (38x38).png" id="1_yt7pw"]
+[ext_resource type="Texture2D" uid="uid://fga1h41ououf" path="res://sprite/On (38x38).png" id="1_yt7pw"]
+[ext_resource type="Script" path="res://Saw.cs" id="2_5n8wu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_244rl"]
 atlas = ExtResource("1_yt7pw")
@@ -75,6 +76,7 @@ rotation = 1.55587
 sprite_frames = SubResource("SpriteFrames_8q1oe")
 frame = 3
 frame_progress = 0.262923
+script = ExtResource("2_5n8wu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.952, 1.96169)

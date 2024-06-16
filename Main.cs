@@ -6,6 +6,7 @@ public partial class Main : Node2D
 	public const int CellSize = 32;
 	public const int CellsHorizontal = 20;
 	public const int CellsVertical = 30;
+	public const int InitialSawsCount = 5;
 	
 	private PackedScene wallScene;
 	private PackedScene brickScene;
@@ -22,7 +23,8 @@ public partial class Main : Node2D
 		wallScene = GD.Load<PackedScene>("res://Wall.tscn");
 		brickScene = GD.Load<PackedScene>("res://Brick.tscn");
 		sawScene = GD.Load<PackedScene>("res://Saw.tscn");
-		CreateTrap();
+		
+		CreateSaws(InitialSawsCount);
 		CreateWalls();
 		
 		player = GetNode<Player>("Player");
@@ -70,12 +72,27 @@ public partial class Main : Node2D
 		}
 	}
 	
-	private void CreateTrap() {
-		int sawYCellPosition = random.Next(1, CellsVertical - 1);
-		Area2D saw = (Area2D)sawScene.Instantiate();
-		saw.Position = new Vector2((CellsHorizontal - 1) * CellSize, sawYCellPosition * CellSize);
-		AddChild(saw);
+	private void CreateSaws(int numSaws) {
+		Path2D pathRight = GetNode<Path2D>("SawPathRight");
+		Path2D pathLeft = GetNode<Path2D>("SawPathLeft");
 		
+		for (int i = 0; i < numSaws; i++)
+		{
+			CreateSaw(pathRight);
+			CreateSaw(pathLeft);
+		}
+	}
+	
+	private void CreateSaw(Path2D path) {
+		PathFollow2D pathFollow = new PathFollow2D();
+		path.AddChild(pathFollow);
+
+		Area2D saw = (Area2D)sawScene.Instantiate();
+		pathFollow.AddChild(saw);
+			
+		float progressRatio = (float)random.NextDouble();
+		pathFollow.ProgressRatio = progressRatio;
+
 		AnimatedSprite2D sawSprite = saw.GetNode<AnimatedSprite2D>("Saw");
 		sawSprite.Play();
 	}

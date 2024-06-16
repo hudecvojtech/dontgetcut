@@ -1,17 +1,20 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Main : Node2D
 {
 	public const int CellSize = 32;
 	public const int CellsHorizontal = 20;
 	public const int CellsVertical = 30;
-	public const int InitialSawsCount = 5;
+	public const int InitialSawsCount = 2;
+	public const int PlayerCellOffset = 3;
 	
 	private PackedScene wallScene;
 	private PackedScene brickScene;
 	private PackedScene sawScene;
 	private Player player;
+	private List<Saw> saws = new List<Saw>();
 	
 	private Random random = new Random();
 	
@@ -28,7 +31,7 @@ public partial class Main : Node2D
 		CreateWalls();
 		
 		player = GetNode<Player>("Player");
-		player.Position = new Vector2(CellSize, (CellsVertical * CellSize) / 2);
+		player.Position = new Vector2(CellSize * PlayerCellOffset, (CellsVertical * CellSize) / 2);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -87,20 +90,37 @@ public partial class Main : Node2D
 		PathFollow2D pathFollow = new PathFollow2D();
 		path.AddChild(pathFollow);
 
-		Area2D saw = (Area2D)sawScene.Instantiate();
-		pathFollow.AddChild(saw);
+		Area2D sawArea = (Area2D)sawScene.Instantiate();
+		sawArea.Connect("PlayerHit", new Callable(this, nameof(OnGameOver)));
+		pathFollow.AddChild(sawArea);
 			
 		float progressRatio = (float)random.NextDouble();
 		pathFollow.ProgressRatio = progressRatio;
 
-		AnimatedSprite2D sawSprite = saw.GetNode<AnimatedSprite2D>("Saw");
+		AnimatedSprite2D sawSprite = sawArea.GetNode<AnimatedSprite2D>("Saw");
 		sawSprite.Play();
+		
+		Saw saw = sawArea as Saw;
+		saws.Add(saw);
+	}
+	
+	 private void IncreaseSawSpeeds()
+	{
+		foreach (Saw saw in saws)
+		{
+			saw.IncreaseSpeed(10);
+		}
 	}
 	
 	private void _on_cherry_cherry_eaten()
 	{
 		score++;
 		GetNode<Label>("ScoreLabel").Text = score.ToString();
+		IncreaseSawSpeeds();
+		if (score % 3 == 0) 
+		{
+			CreateSaws(1);
+		}
 	}
 	
 	private void OnGameOver()

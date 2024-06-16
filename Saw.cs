@@ -1,8 +1,11 @@
 using Godot;
 using System;
 
-public partial class Saw : AnimatedSprite2D
+public partial class Saw : Area2D
 {
+	[Signal]
+	public delegate void PlayerHitEventHandler();
+	
 	private const int MinSpeed = 20;
 	private const int MaxSpeed = 60;
 
@@ -28,17 +31,17 @@ public partial class Saw : AnimatedSprite2D
 		}
 	}
 	
+	public void IncreaseSpeed(float increment)
+	{
+		speed += increment * Math.Sign(speed);
+	}
+	
 	private void InitPathFollow() 
 	{
 		Node parent = GetParent();
-		while (parent != null)
+		if (parent is PathFollow2D)
 		{
-			if (parent is PathFollow2D)
-			{
-				pathFollow = (PathFollow2D)parent;
-				break;
-			}
-			parent = parent.GetParent();
+			pathFollow = (PathFollow2D)parent;
 		}
 	}
 	
@@ -53,5 +56,17 @@ public partial class Saw : AnimatedSprite2D
 	{
 		bool isPositive = Convert.ToBoolean(random.Next(0, 2));
 		return isPositive ? 1 : -1;
+	}
+	
+	private void _on_body_entered(Node2D body)
+	{
+		if (body is Player)
+		{
+			CallDeferred(nameof(ProcessPlayerHit));
+		}
+	}
+	
+	private void ProcessPlayerHit() {
+		EmitSignal(nameof(PlayerHit));
 	}
 }

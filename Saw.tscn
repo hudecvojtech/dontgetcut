@@ -70,14 +70,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2t3xo"]
 
 [node name="Saw" type="Area2D"]
+script = ExtResource("2_5n8wu")
 
 [node name="Saw" type="AnimatedSprite2D" parent="."]
 rotation = 1.55587
 sprite_frames = SubResource("SpriteFrames_8q1oe")
 frame = 3
 frame_progress = 0.262923
-script = ExtResource("2_5n8wu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.952, 1.96169)
 shape = SubResource("CircleShape2D_2t3xo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -14,6 +14,8 @@ public partial class Main : Node2D
 	
 	private Random random = new Random();
 	
+	private int score = 0;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -62,6 +64,8 @@ public partial class Main : Node2D
 		{
 			Area2D brick = (Area2D)brickScene.Instantiate();
 			brick.Position = new Vector2(i * CellSize, startY * CellSize);
+					
+			brick.Connect("PlayerHit", new Callable(this, nameof(OnGameOver)));
 			AddChild(brick);
 		}
 	}
@@ -74,5 +78,26 @@ public partial class Main : Node2D
 		
 		AnimatedSprite2D sawSprite = saw.GetNode<AnimatedSprite2D>("Saw");
 		sawSprite.Play();
+	}
+	
+	private void _on_cherry_cherry_eaten()
+	{
+		score++;
+		GetNode<Label>("ScoreLabel").Text = score.ToString();
+	}
+	
+	private void OnGameOver()
+	{
+		CallDeferred(nameof(ChangeSceneGameOver));
+	}
+	
+	private void ChangeSceneGameOver() 
+	{
+		var gameOverScene = (PackedScene)ResourceLoader.Load("res://GameOver.tscn");
+		var gameOverInstance = (GameOver)gameOverScene.Instantiate();
+		gameOverInstance.SetScore(score);
+		var sceneToSet = new PackedScene();
+		sceneToSet.Pack(gameOverInstance);
+		GetTree().ChangeSceneToPacked(sceneToSet);
 	}
 }

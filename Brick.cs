@@ -20,7 +20,6 @@ public partial class Brick : Area2D
 	{
 		if (body is Player)
 		{
-			GD.Print("end");
 			CallDeferred(nameof(ProcessPlayerHit));
 		}
 	}

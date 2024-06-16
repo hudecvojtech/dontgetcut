@@ -39,13 +39,6 @@ public partial class Player : CharacterBody2D
 		
 		Velocity = velocity;
 		MoveAndSlide();
-		
-		for (int i = 0; i < GetSlideCollisionCount(); i++)
-		{
-			var collision = GetSlideCollision(i);
-			var collider = (Node)collision.GetCollider();
-			GD.Print(collider.Name); // FIXME end game on touch floor or ceiling
-		}
 	}
 
 }

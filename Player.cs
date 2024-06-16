@@ -14,6 +14,8 @@ public partial class Player : CharacterBody2D
 	
 	public override void _Ready() {
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		animation.Play();
+		
 		direction = true;
 		animation.FlipH = direction;
 		Vector2 velocity = Velocity;
@@ -33,7 +35,7 @@ public partial class Player : CharacterBody2D
 		
 		velocity.Y += gravity * (float)delta;
 		
-		if (Input.IsActionJustPressed("ui_accept") && !IsOnFloor()) {
+		if (Input.IsActionJustPressed("ui_accept") && !IsOnFloor() && velocity.Y > JumpVelocity) {
 			velocity.Y += JumpVelocity;
 		}
 		

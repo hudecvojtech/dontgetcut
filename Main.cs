@@ -94,10 +94,10 @@ public partial class Main : Node2D
 	private void ChangeSceneGameOver() 
 	{
 		var gameOverScene = (PackedScene)ResourceLoader.Load("res://GameOver.tscn");
-		var gameOverInstance = (GameOver)gameOverScene.Instantiate();
+		var gameOverInstance = gameOverScene.Instantiate() as GameOver;
 		gameOverInstance.SetScore(score);
-		var sceneToSet = new PackedScene();
-		sceneToSet.Pack(gameOverInstance);
-		GetTree().ChangeSceneToPacked(sceneToSet);
+		var newScene = new PackedScene();
+		newScene.Pack(gameOverInstance);
+		GetTree().ChangeSceneToPacked(newScene);
 	}
 }

@@ -1,24 +1,67 @@
-[gd_scene load_steps=2 format=3 uid="uid://diffxvy0iccoo"]
+[gd_scene load_steps=10 format=3 uid="uid://diffxvy0iccoo"]
 
 [ext_resource type="Script" path="res://GameOver.cs" id="1_y1n20"]
+[ext_resource type="FontFile" uid="uid://fut1uk5gfja0" path="res://sprite/Minecraftia-Regular.ttf" id="2_jabn2"]
+[ext_resource type="Shader" path="res://Scroll.gdshader" id="3_sblal"]
+[ext_resource type="Texture2D" uid="uid://00g2tgafae58" path="res://sprite/Brown.png" id="4_x6pvc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhmpq"]
+shader = ExtResource("3_sblal")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p6ade"]
+
+[sub_resource type="Theme" id="Theme_0vcpi"]
+default_font = ExtResource("2_jabn2")
+default_font_size = 20
+
+[sub_resource type="Theme" id="Theme_cci1x"]
+default_font = ExtResource("2_jabn2")
+default_font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_ilgkh"]
+font = ExtResource("2_jabn2")
+font_size = 32
+font_color = Color(1, 0.921569, 0.811765, 1)
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource("1_y1n20")
 
+[node name="TextureRect" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_xhmpq")
+position = Vector2(322, 482)
+texture = ExtResource("4_x6pvc")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 960)
+
 [node name="RestartButton" type="Button" parent="."]
-offset_right = 226.0
-offset_bottom = 82.0
+material = SubResource("CanvasItemMaterial_p6ade")
+offset_left = 220.0
+offset_top = 300.0
+offset_right = 420.0
+offset_bottom = 380.0
+theme = SubResource("Theme_0vcpi")
 text = "Restart"
 
 [node name="ExitButton" type="Button" parent="."]
-offset_left = 1.0
-offset_top = 121.0
-offset_right = 227.0
-offset_bottom = 203.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 220.0
+offset_top = 400.0
+offset_right = 420.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_cci1x")
 text = "Exit"
 
 [node name="ScoreLabel" type="Label" parent="."]
-offset_left = 75.0
-offset_top = 279.0
-offset_right = 156.0
-offset_bottom = 302.0
+offset_top = 200.0
+offset_right = 639.0
+offset_bottom = 256.0
+text = "Score"
+label_settings = SubResource("LabelSettings_ilgkh")
+horizontal_alignment = 1

@@ -23,8 +23,8 @@ public partial class Cherry : Area2D
 	
 	private Vector2 GenerateRandomPosition() {
 		return new Vector2(
-			GD.RandRange(1, Main.CellsHorizontal - 2) * Main.CellSize, 
-			GD.RandRange(1, Main.CellsVertical - 2) * Main.CellSize
+			GD.RandRange(2, Main.CellsHorizontal - 3) * Main.CellSize, 
+			GD.RandRange(2, Main.CellsVertical - 3) * Main.CellSize
 		);
 	}
 		

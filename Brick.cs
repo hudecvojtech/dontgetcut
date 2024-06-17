@@ -27,6 +27,4 @@ public partial class Brick : Area2D
 	private void ProcessPlayerHit() {
 		EmitSignal(nameof(PlayerHit));
 	}
-
-	
 }

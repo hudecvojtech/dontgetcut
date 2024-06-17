@@ -41,13 +41,10 @@ public partial class Main : Node2D
 	
 	private void CreateWalls()
 	{
-		// Create brick on the top and bottom rows, including corners
-		CreateBrick(0, 0, CellsHorizontal); // Top brick
-		CreateBrick(0, CellsVertical - 1, CellsHorizontal); // Bottom brick, including corners
-
-		// Create stone walls on the left and right columns, including corners
-		CreateWall(0, 0, 1, CellsVertical); // Left wall, including corners
-		CreateWall(CellsHorizontal - 1, 0, 1, CellsVertical); // Right wall, including corners
+		CreateBrick(0, 0, CellsHorizontal);
+		CreateBrick(0, CellsVertical - 1, CellsHorizontal);
+		CreateWall(0, 0, 1, CellsVertical);
+		CreateWall(CellsHorizontal - 1, 0, 1, CellsVertical);
 	}
 
 	private void CreateWall(int startX, int startY, int width, int height)
@@ -86,22 +83,36 @@ public partial class Main : Node2D
 		}
 	}
 	
-	private void CreateSaw(Path2D path) {
-		PathFollow2D pathFollow = new PathFollow2D();
-		path.AddChild(pathFollow);
-
-		Area2D sawArea = (Area2D)sawScene.Instantiate();
-		sawArea.Connect("PlayerHit", new Callable(this, nameof(OnGameOver)));
-		pathFollow.AddChild(sawArea);
-			
-		float progressRatio = (float)random.NextDouble();
-		pathFollow.ProgressRatio = progressRatio;
-
-		AnimatedSprite2D sawSprite = sawArea.GetNode<AnimatedSprite2D>("Saw");
-		sawSprite.Play();
+ private void CreateSaw(Path2D path)
+	{
+		PathFollow2D pathFollow = CreatePathFollow(path);
+		Area2D sawArea = InstantiateSaw(pathFollow);
+		ConfigureSaw(sawArea, pathFollow);
 		
 		Saw saw = sawArea as Saw;
 		saws.Add(saw);
+	}
+
+	private PathFollow2D CreatePathFollow(Path2D path)
+	{
+		PathFollow2D pathFollow = new PathFollow2D();
+		path.AddChild(pathFollow);
+		pathFollow.ProgressRatio = (float)random.NextDouble();
+		return pathFollow;
+	}
+
+	private Area2D InstantiateSaw(PathFollow2D pathFollow)
+	{
+		Area2D sawArea = (Area2D)sawScene.Instantiate();
+		sawArea.Connect("PlayerHit", new Callable(this, nameof(OnGameOver)));
+		pathFollow.AddChild(sawArea);
+		return sawArea;
+	}
+
+	private void ConfigureSaw(Area2D sawArea, PathFollow2D pathFollow)
+	{
+		AnimatedSprite2D sawSprite = sawArea.GetNode<AnimatedSprite2D>("Saw");
+		sawSprite.Play();
 	}
 	
 	 private void IncreaseSawSpeeds()

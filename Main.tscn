@@ -12,7 +12,7 @@ shader = ExtResource("2_oht8v")
 
 [sub_resource type="LabelSettings" id="LabelSettings_eouv8"]
 font = ExtResource("6_i5uwf")
-font_size = 60
+font_size = 35
 font_color = Color(1, 0.923111, 0.812199, 1)
 
 [sub_resource type="Curve2D" id="Curve2D_hy2jg"]
@@ -34,10 +34,12 @@ region_enabled = true
 region_rect = Rect2(0, 0, 640, 960)
 
 [node name="Player" parent="." instance=ExtResource("4_2a2s6")]
+visible = false
 z_index = 2
 position = Vector2(100, 100)
 
 [node name="Cherry" parent="." instance=ExtResource("5_qcesj")]
+visible = false
 z_index = 1
 scale = Vector2(2, 2)
 
@@ -58,5 +60,15 @@ curve = SubResource("Curve2D_hy2jg")
 [node name="SawPathLeft" type="Path2D" parent="."]
 position = Vector2(-392, 8)
 curve = SubResource("Curve2D_hy2jg")
+
+[node name="StartLabel" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 642.0
+offset_bottom = 960.0
+text = "Press Space to Start"
+label_settings = SubResource("LabelSettings_eouv8")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="CherryEaten" from="Cherry" to="." method="_on_cherry_cherry_eaten"]

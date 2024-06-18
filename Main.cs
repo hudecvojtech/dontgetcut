@@ -15,10 +15,14 @@ public partial class Main : Node2D
 	private PackedScene sawScene;
 	private Player player;
 	private List<Saw> saws = new List<Saw>();
+	private Label scoreLabel;
+	private Label startLabel;
+	private Area2D cherry;
 	
 	private Random random = new Random();
 	
 	private int score = 0;
+	private bool gameStarted = false;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,16 +31,34 @@ public partial class Main : Node2D
 		brickScene = GD.Load<PackedScene>("res://Brick.tscn");
 		sawScene = GD.Load<PackedScene>("res://Saw.tscn");
 		
-		CreateSaws(InitialSawsCount);
 		CreateWalls();
 		
 		player = GetNode<Player>("Player");
 		player.Position = new Vector2(CellSize * PlayerCellOffset, (CellsVertical * CellSize) / 2);
+		
+		cherry = GetNode<Area2D>("Cherry");
+		startLabel = GetNode<Label>("StartLabel");
+		scoreLabel = GetNode<Label>("ScoreLabel");
+		scoreLabel.Visible = false;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (!gameStarted && Input.IsActionJustPressed("ui_accept"))
+		{
+			StartGame();
+		}
+	}
+	
+	private void StartGame()
+	{
+		CreateSaws(InitialSawsCount);
+		player.StartGame();
+		cherry.Visible = true;
+		scoreLabel.Visible = true;
+		startLabel.Visible = false;
+		gameStarted = true;
 	}
 	
 	private void CreateWalls()

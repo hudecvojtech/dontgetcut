@@ -8,16 +8,17 @@
 | Follow the Sun (The Dog) | Mental support | On demand  |
 ## Gantt Chart
 
-| Task                 | Responsible       | Start      | Finish     | Duration | Status       |
-|----------------------|-------------------|------------|------------|----------|--------------|
-| Sprint 1             |                   | 20-May-24  | 26-May-24  | 7 days   | Not Started  |
-| #1 Prepare scene     | Gabriela Pachlová | 25-May-24  | 25-May-24  | 1 day    | Not Started  |
-| #2 Create saw        | Gabriela Pachlová | 26-May-24  | 26-May-24  | 1 day    | Not Started  |
-| #3 Create player     | Vojtěch Hudec     | 25-May-24  | 25-May-24  | 1 day    | Not Started  |
-| #4 Create cherry     | Vojtěch Hudec     | 26-May-24  | 26-May-24  | 1 day    | Not Started  |
-| Sprint 2             |                   | 27-May-24  | 2-June-24  | 7 days   | Not Started  |
-| #5 Add saw logic     | Gabriela Pachlová | 1-June-24  | 1-June-24  | 1 days   | Not Started  |
-| #6 Add player logic  | Vojtěch Hudec     | 1-June-24  | 2-June-24  | 2 days   | Not Started  |
-| #7 Add cherry logic  | Gabriela Pachlová | 2-June-24  | 2-June-24  | 1 days   | Not Started  |
-| Sprint 3             |                   | 3-June-24  | 9-June-24  | 7 days   | Not Started  |
-| #8 Add menu scene    |                   |            |            |          | Not Started  |
+| Task                | Responsible       | Start     | Finish    | Duration | Status        |
+|---------------------|-------------------|-----------|-----------|----------|---------------|
+| Sprint 1            |                   | 20-May-24 | 26-May-24 | 7 days   | Finished      |
+| #1 Prepare scene    | Gabriela Pachlová | 25-May-24 | 25-May-24 | 1 day    | Finished      |
+| #2 Create saw       | Gabriela Pachlová | 26-May-24 | 26-May-24 | 1 day    | Finished      |
+| #3 Create player    | Vojtěch Hudec     | 25-May-24 | 25-May-24 | 1 day    | Finished      |
+| #4 Create cherry    | Vojtěch Hudec     | 26-May-24 | 26-May-24 | 1 day    | Finished      |
+| Sprint 2            |                   | 27-May-24 | 02-Jun-24 | 7 days   | Finished      |
+| #5 Add saw logic    | Gabriela Pachlová | 01-Jun-24 | 01-Jun-24 | 1 days   | Finished      |
+| #6 Add player logic | Vojtěch Hudec     | 01-Jun-24 | 02-Jun-24 | 2 days   | Finished      |
+| #7 Add cherry logic | Vojtěch Hudec     | 02-Jun-24 | 02-Jun-24 | 1 day    | Finished      |
+| Sprint 3            |                   | 03-Jun-24 | 09-Jun-24 | 7 days   | Finished      |
+| #8 Add menu scene   | Vojtěch Hudec     | 16-Jun-24 | 16-Jun-24 | 1 day    | Finished      |
+| #9 Add start option | Gabriela Pachlová | 18-Jun-24 | 18-Jun-24 | 1 day    | Finished      |

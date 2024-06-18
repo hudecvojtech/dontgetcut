@@ -16,6 +16,21 @@ public partial class GameOver : Node2D
 	public override void _Process(double delta)
 	{
 	}
+		
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventKey eventKey && eventKey.Pressed)
+		{
+			if (eventKey.Keycode == Key.Space)
+			{
+				RestartGame();
+			}
+			else if (eventKey.Keycode == Key.E)
+			{
+				ExitGame();
+			}
+		}
+	}
 	
 	public void SetScore(int score)
 	{
@@ -24,11 +39,21 @@ public partial class GameOver : Node2D
 	
 	private void OnRestartButtonPressed()
 	{
+		RestartGame();
+	}
+	
+	private void RestartGame()
+	{
 		var mainScene = (PackedScene)ResourceLoader.Load("res://Main.tscn");
 		GetTree().ChangeSceneToPacked(mainScene);
 	}
 	
 	private void OnExitButtonPressed()
+	{
+		ExitGame();
+	}
+	
+	private void ExitGame()
 	{
 		GetTree().Quit();
 	}
